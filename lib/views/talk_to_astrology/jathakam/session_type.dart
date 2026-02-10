@@ -10,6 +10,31 @@ class SessionTypeSelector extends StatefulWidget {
 
 class _SessionTypeSelectorState extends State<SessionTypeSelector> {
   int selectedIndex = 0;
+  
+  // Define session types with their data
+  final List<Map<String, dynamic>> sessionTypes = [
+    {
+      'type': 'Chat Consultation',
+      'basePrice': 500,
+      'duration': '30 Minutes',
+      'description': 'Chat Session',
+      'icon': Icons.chat_outlined,
+    },
+    {
+      'type': 'Voice Consultation',
+      'basePrice': 1000,
+      'duration': '30 minutes',
+      'description': 'Voice Call Session',
+      'icon': Icons.call_outlined,
+    },
+    {
+      'type': 'Video Consultation',
+      'basePrice': 2000,
+      'duration': '60 minutes',
+      'description': 'Video Call Session',
+      'icon': Icons.videocam_outlined,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -48,29 +73,19 @@ class _SessionTypeSelectorState extends State<SessionTypeSelector> {
 
                     const SizedBox(height: 20),
 
-                    _sessionCard(
-                      index: 0,
-                      title: "Chat Consultation",
-                      price: "₹250 / ₹500",
-                      duration: "15 min / 30 min",
-                      icon: Icons.chat_outlined,
-                    ),
-
-                    _sessionCard(
-                      index: 1,
-                      title: "Voice Consultation",
-                      price: "₹1000",
-                      duration: "30 minutes",
-                      icon: Icons.call_outlined,
-                    ),
-
-                    _sessionCard(
-                      index: 2,
-                      title: "Video Consultation",
-                      price: "₹2000",
-                      duration: "60 minutes",
-                      icon: Icons.videocam_outlined,
-                    ),
+                    // Generate session cards dynamically
+                    ...sessionTypes.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final session = entry.value;
+                      
+                      return _sessionCard(
+                        index: index,
+                        title: session['type'],
+                        price: index == 0 ? "₹250 / ₹500" : "₹${session['basePrice']}",
+                        duration: session['duration'],
+                        icon: session['icon'],
+                      );
+                    }),
 
                     const SizedBox(height: 12),
 
@@ -104,10 +119,17 @@ class _SessionTypeSelectorState extends State<SessionTypeSelector> {
                     ),
                   ),
                   onPressed: () {
+                    final selectedSession = sessionTypes[selectedIndex];
+                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const PaymentUI(),
+                        builder: (_) => PaymentUI(
+                          sessionType: selectedSession['type'],
+                          sessionDescription: selectedSession['description'],
+                          duration: selectedSession['duration'],
+                          basePrice: selectedSession['basePrice'],
+                        ),
                       ),
                     );
                   },
