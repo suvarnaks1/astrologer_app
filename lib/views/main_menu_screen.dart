@@ -38,19 +38,21 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-
-      /// 🔥 THIS CHANGES WHEN YOU TAP ICONS
-      body: pages[currentIndex],
-
-      bottomNavigationBar: CustomBottomNav(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index; // ✅ THIS MAKES IT WORK
-          });
-        },
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+      
+        /// 🔥 THIS CHANGES WHEN YOU TAP ICONS
+        body: pages[currentIndex],
+      
+        bottomNavigationBar: CustomBottomNav(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index; // ✅ THIS MAKES IT WORK
+            });
+          },
+        ),
       ),
     );
   }

@@ -1,104 +1,114 @@
+import 'package:astrologer_app/views/talk_to_astrology/jathakam/jathakam.dart';
 import 'package:flutter/material.dart';
 
-class TalkToAstrologerTabs extends StatelessWidget {
+class AppColors {
+  static const Color black = Color(0xFF000000);
+  static const Color orange = Color(0xFFDC5F00);
+  static const Color lightGrey = Color(0xFFEEEEEE);
+  static const Color white = Colors.white;
+}
+
+class TalkToAstrologerTabs extends StatefulWidget {
   const TalkToAstrologerTabs({super.key});
 
   @override
+  State<TalkToAstrologerTabs> createState() => _TalkToAstrologerTabsState();
+}
+
+class _TalkToAstrologerTabsState extends State<TalkToAstrologerTabs> {
+  int selectedTab = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
+    return Scaffold(
+      backgroundColor: AppColors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
 
-        /// TAB CONTAINER
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(
-              color: const Color(0xFFDC5F00),
-              width: 1.2,
+            /// 🔘 TAB BAR
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: AppColors.orange),
+              ),
+              child: Row(
+                children: [
+                  _tabButton("Jathakam", 0),
+                  const SizedBox(width: 6),
+                  _tabButton("Kavadi Presna", 1),
+                ],
+              ),
             ),
-          ),
-          child: Row(
-            children: [
-              /// JATHAKAM (ACTIVE)
-              Expanded(
-                child: Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFDC5F00),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Jathakam',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
 
-              const SizedBox(width: 6),
+            const SizedBox(height: 16),
 
-              /// KAVADI PRESNA (TIME LIMITED)
-              Expanded(
-                child: Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'Kavadi Presna',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                        ),
-                      ),
-                    
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            /// 🔁 TAB CONTENT (IMPORTANT FIX)
+            Expanded(
+              child: selectedTab == 0
+                  ? const JathakamFormScreen()
+                  : const KavadiUI(),
+            ),
+          ],
         ),
+      ),
+    );
+  }
 
-        const SizedBox(height: 24),
+  Widget _tabButton(String title, int index) {
+    final bool active = selectedTab == index;
 
-        /// CONTENT PLACEHOLDER
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          height: 160,
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => selectedTab = index),
+        child: Container(
+          height: 44,
           decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: const Color(0xFFDC5F00),
-              width: 1,
-            ),
+            color: active ? AppColors.orange : AppColors.black,
+            borderRadius: BorderRadius.circular(24),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
-              'Jathakam Content UI',
+              title,
               style: TextStyle(
-                color: Colors.white70,
-                fontSize: 16,
+                color: active ? Colors.black : Colors.white70,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
         ),
-      ],
+      ),
+    );
+  }
+}
+
+
+/// ================= KAVADI UI =================
+
+class KavadiUI extends StatelessWidget {
+  const KavadiUI({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: AppColors.black,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.orange),
+        ),
+        child: const Text(
+          "Kavadi Presna\nAvailable only\n8:00–12:00 & 15:00–17:00",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white70),
+        ),
+      ),
     );
   }
 }

@@ -9,89 +9,91 @@ class LanguageSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.black,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-
-              /// Icon
-              CircleAvatar(
-                radius: 38,
-                backgroundColor: AppColors.red,
-                child: const Icon(
-                  Icons.language,
-                  color: AppColors.white,
-                  size: 36,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.black,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+      
+                /// Icon
+                CircleAvatar(
+                  radius: 38,
+                  backgroundColor: AppColors.red,
+                  child: const Icon(
+                    Icons.language,
+                    color: AppColors.white,
+                    size: 36,
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 24),
-
-              /// Title
-              const Text(
-                "Choose Your Language",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.orange,
+      
+                const SizedBox(height: 24),
+      
+                /// Title
+                const Text(
+                  "Choose Your Language",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.orange,
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 8),
-
-              /// Subtitle
-              const Text(
-                "You can change this later in settings",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.lightGrey,
+      
+                const SizedBox(height: 8),
+      
+                /// Subtitle
+                const Text(
+                  "You can change this later in settings",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: AppColors.lightGrey,
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 32),
-
-              /// Language List
-              const LanguageTile(title: "English", subtitle: "English"),
-              const LanguageTile(title: "മലയാളം", subtitle: "Malayalam"),
-              const LanguageTile(title: "தமிழ்", subtitle: "Tamil"),
-              const LanguageTile(title: "हिंदी", subtitle: "Hindi"),
-
-              const Spacer(),
-
-              /// Continue Button
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => MainScreen()
+      
+                const SizedBox(height: 32),
+      
+                /// Language List
+                const LanguageTile(title: "English", subtitle: "English"),
+                const LanguageTile(title: "മലയാളം", subtitle: "Malayalam"),
+                const LanguageTile(title: "தமிழ்", subtitle: "Tamil"),
+                const LanguageTile(title: "हिंदी", subtitle: "Hindi"),
+      
+                const Spacer(),
+      
+                /// Continue Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => MainScreen()
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
                     ),
-                  ),
-                  child: const Text(
-                    "Continue",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.white,
+                    child: const Text(
+                      "Continue",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
