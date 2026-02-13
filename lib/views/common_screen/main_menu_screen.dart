@@ -1,4 +1,6 @@
-import 'package:astrologer_app/views/bottom_nav.dart';
+import 'package:astrologer_app/views/common_screen/bottom_nav.dart';
+import 'package:astrologer_app/views/profile_feedback/feedback_screen.dart';
+import 'package:astrologer_app/views/profile_feedback/profile_wallet.dart';
 import 'package:astrologer_app/views/talk_to_astrology/talk_to_astrology.dart';
 import 'package:flutter/material.dart';
 
@@ -16,18 +18,8 @@ class _MainScreenState extends State<MainScreen> {
 
   final pages = const [
    TalkToAstrologerTabs(),
-    Center(
-      child: Text(
-        "Search Page",
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    ),
-    Center(
-      child: Text(
-        "Astrology Page",
-        style: TextStyle(color: Colors.white, fontSize: 24),
-      ),
-    ),
+ MyProfileWalletScreen(),
+   FeedbackScreen(),
     Center(
       child: Text(
         "Notification Page",

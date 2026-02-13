@@ -1,12 +1,7 @@
 import 'package:astrologer_app/views/talk_to_astrology/jathakam/jathakam.dart';
+import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static const Color black = Color(0xFF000000);
-  static const Color orange = Color(0xFFDC5F00);
-  static const Color lightGrey = Color(0xFFEEEEEE);
-  static const Color white = Colors.white;
-}
 
 class TalkToAstrologerTabs extends StatefulWidget {
   const TalkToAstrologerTabs({super.key});

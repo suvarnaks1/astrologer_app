@@ -1,5 +1,5 @@
 
-import 'package:astrologer_app/views/agreement_page.dart';
+import 'package:astrologer_app/views/common_screen/agreement_page.dart';
 import 'package:astrologer_app/views/auth/otp_screen.dart';
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';

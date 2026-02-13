@@ -1,5 +1,5 @@
 
-import 'package:astrologer_app/views/language_screen.dart';
+import 'package:astrologer_app/views/common_screen/language_screen.dart';
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 

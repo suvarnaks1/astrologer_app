@@ -1,3 +1,4 @@
+import 'package:astrologer_app/views/common_screen/agreement_page.dart';
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -139,7 +140,11 @@ SizedBox(height: 20,),
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: _verifyOtp,
+                        onPressed: (){Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (context) => DisclaimerAgreementScreen(),
+    ),
+  );},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.orange,
                           shape: RoundedRectangleBorder(

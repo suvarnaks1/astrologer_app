@@ -1,6 +1,6 @@
 
-import 'package:astrologer_app/views/bottom_nav.dart';
-import 'package:astrologer_app/views/main_menu_screen.dart';
+import 'package:astrologer_app/views/common_screen/bottom_nav.dart';
+import 'package:astrologer_app/views/common_screen/main_menu_screen.dart';
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 
