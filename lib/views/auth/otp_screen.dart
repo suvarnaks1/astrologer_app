@@ -1,4 +1,5 @@
 import 'package:astrologer_app/views/common_screen/agreement_page.dart';
+import 'package:astrologer_app/views/common_screen/phot_screen.dart';
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -142,7 +143,7 @@ SizedBox(height: 20,),
                       child: ElevatedButton(
                         onPressed: (){Navigator.of(context).push(
     MaterialPageRoute<void>(
-      builder: (context) => DisclaimerAgreementScreen(),
+      builder: (context) => FullImagePage(),
     ),
   );},
                         style: ElevatedButton.styleFrom(

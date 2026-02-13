@@ -1,4 +1,7 @@
+import 'package:astrologer_app/views/talk_to_astrology/jathakam/chat/chat_screen.dart';
 import 'package:astrologer_app/views/talk_to_astrology/jathakam/payment_screen.dart';
+import 'package:astrologer_app/views/talk_to_astrology/jathakam/vedio/vedio_screen.dart';
+import 'package:astrologer_app/views/talk_to_astrology/jathakam/voice/voice_screen.dart';
 import 'package:flutter/material.dart';
 
 class SessionTypeSelector extends StatefulWidget {
@@ -118,21 +121,33 @@ class _SessionTypeSelectorState extends State<SessionTypeSelector> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  onPressed: () {
-                    final selectedSession = sessionTypes[selectedIndex];
-                    
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PaymentUI(
-                          sessionType: selectedSession['type'],
-                          sessionDescription: selectedSession['description'],
-                          duration: selectedSession['duration'],
-                          basePrice: selectedSession['basePrice'],
-                        ),
-                      ),
-                    );
-                  },
+           onPressed: () {
+  final selectedSession = sessionTypes[selectedIndex];
+
+  if (selectedSession['type'] == 'Chat Consultation') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ChatScreen(),
+      ),
+    );
+  } else if (selectedSession['type'] == 'Voice Consultation') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const VoiceCallScreen(),
+      ),
+    );
+  } else if (selectedSession['type'] == 'Video Consultation') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const VideoCallScreen(),
+      ),
+    );
+  }
+},
+
                   child: const Text(
                     "Proceed to Payment",
                     style: TextStyle(

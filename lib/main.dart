@@ -1,5 +1,7 @@
-import 'package:astrologer_app/views/auth/otp_screen.dart';
+
 import 'package:astrologer_app/views/auth/login_screen.dart';
+
+
 import 'package:flutter/material.dart';
 
 void main() {

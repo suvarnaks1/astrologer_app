@@ -1,8 +1,6 @@
 import 'package:astrologer_app/views/util/colors.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MyProfileWalletScreen extends StatelessWidget {
   const MyProfileWalletScreen({super.key});
 
@@ -10,7 +8,6 @@ class MyProfileWalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-      
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -24,15 +21,48 @@ class MyProfileWalletScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
-                children: const [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: AppColors.orange,
-                    child: Icon(Icons.person,
-                        size: 40, color: AppColors.black),
+                children: [
+
+                  /// 🔸 Profile Image with Icons
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+
+                      /// Profile Avatar
+                      const CircleAvatar(
+                        radius: 45,
+                        backgroundColor: AppColors.orange,
+                        child: Icon(
+                          Icons.person,
+                          size: 45,
+                          color: AppColors.black,
+                        ),
+                      ),
+
+                      /// Camera Icon
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: AppColors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.camera_alt,
+                                size: 18, color: AppColors.white),
+                            onPressed: () {
+                              _showImageOptions(context);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 12),
-                  Text(
+
+                  const SizedBox(height: 12),
+
+                  const Text(
                     "John Doe",
                     style: TextStyle(
                       color: AppColors.white,
@@ -40,8 +70,10 @@ class MyProfileWalletScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 4),
-                  Text(
+
+                  const SizedBox(height: 4),
+
+                  const Text(
                     "+91 9876543210",
                     style: TextStyle(
                       color: AppColors.lightGrey,
@@ -128,7 +160,6 @@ class MyProfileWalletScreen extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            /// 🔹 Transaction List
             _transactionTile(
               "Chat Session",
               "- ₹500",
@@ -150,6 +181,82 @@ class MyProfileWalletScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  /// 🔹 Bottom Sheet for Camera / Gallery
+  static void _showImageOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.darkGrey,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) {
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+
+              const Text(
+                "Choose Profile Picture",
+                style: TextStyle(
+                  color: AppColors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  /// Camera Option
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.camera_alt,
+                            color: AppColors.orange, size: 30),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          // Add Camera logic here
+                        },
+                      ),
+                      const Text(
+                        "Camera",
+                        style: TextStyle(color: AppColors.white),
+                      )
+                    ],
+                  ),
+
+                  /// Gallery Option
+                  Column(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.photo_library,
+                            color: AppColors.orange, size: 30),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          // Add Gallery logic here
+                        },
+                      ),
+                      const Text(
+                        "Gallery",
+                        style: TextStyle(color: AppColors.white),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 10),
+            ],
+          ),
+        );
+      },
     );
   }
 
